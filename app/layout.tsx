@@ -1,27 +1,40 @@
+// app\layout.tsx
+
 import type { Metadata } from 'next'
-import { Playfair_Display, DM_Sans } from 'next/font/google'
+import { Space_Mono, Geist, Geist_Mono } from 'next/font/google'
 import './globals.css'
 
-const playfair = Playfair_Display({
+/* ── Brutalist primary font ── */
+const spaceMono = Space_Mono({
+  subsets: ['latin'],
+  variable: '--font-brutalist',
+  display: 'swap',
+  weight: ['400', '700'],
+})
+
+/* ── Legacy fonts (kept for non-hero sections until full redesign) ── */
+const geist = Geist({
   subsets: ['latin'],
   variable: '--font-display',
   display: 'swap',
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
 })
 
-const dmSans = DM_Sans({
+const geistMono = Geist_Mono({
   subsets: ['latin'],
-  variable: '--font-body',
+  variable: '--font-mono',
   display: 'swap',
+  weight: ['300', '400', '500', '600'],
 })
 
 export const metadata: Metadata = {
   title: 'Nikhil Sahani — Developer',
   description:
-    'Vibe coder building things for the web across every stack — JS/TS, Python, Go, React, Next.js, Flutter, and more.',
+    'Multi-stack developer building considered, fast, and quietly luxurious software for the web.',
   metadataBase: new URL('https://nikhilsahani.in'),
   openGraph: {
     title: 'Nikhil Sahani — Developer',
-    description: 'I build things for the web.',
+    description: 'Considered software, built across the stack.',
     url: 'https://nikhilsahani.in',
     siteName: 'Nikhil Sahani',
     type: 'website',
@@ -29,7 +42,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Nikhil Sahani — Developer',
-    description: 'I build things for the web.',
+    description: 'Considered software, built across the stack.',
   },
 }
 
@@ -39,9 +52,14 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en">
       <body
-        className={`${playfair.variable} ${dmSans.variable} font-body bg-bg text-ink antialiased`}
+        className={`${spaceMono.variable} ${geist.variable} ${geistMono.variable} antialiased`}
+        style={{
+          background: '#0A0A0A',
+          color: '#B0B0B0',
+          fontFamily: "'Space Mono', monospace",
+        }}
       >
         {children}
       </body>
