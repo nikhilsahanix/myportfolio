@@ -44,6 +44,10 @@ export const metadata: Metadata = {
     title: 'Nikhil Sahani — Developer',
     description: 'Considered software, built across the stack.',
   },
+  icons: {
+    icon: '/favicon.svg',
+    shortcut: '/favicon.svg',
+  },
 }
 
 export default function RootLayout({

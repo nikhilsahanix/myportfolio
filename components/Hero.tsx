@@ -58,15 +58,15 @@ const lineGrow: Variants = {
 export default function Hero() {
   return (
     <section
-  id="home"
-  className="relative min-h-[100dvh] flex items-center 2xl:items-end pt-24 2xl:pt-0"
-  style={{
-    background: '#0A0A0A',
-    paddingLeft: 'clamp(1rem, 5vw, 4rem)',
-    paddingRight: 'clamp(1rem, 5vw, 4rem)',
-    paddingBottom: 'clamp(3rem, 8vh, 6rem)',
-  }}
->
+      id="home"
+      className="relative min-h-[100dvh] flex items-center 2xl:items-end pt-24 2xl:pt-0"
+      style={{
+        background: '#0A0A0A',
+        paddingLeft: 'clamp(1rem, 5vw, 4rem)',
+        paddingRight: 'clamp(1rem, 5vw, 4rem)',
+        paddingBottom: 'clamp(3rem, 8vh, 6rem)',
+      }}
+    >
       {/* ── Structural grid lines (visible scaffolding) ── */}
       <div
         className="absolute inset-0 pointer-events-none"
@@ -226,9 +226,9 @@ export default function Hero() {
                 margin: 0,
               }}
             >
-              I build things for the web — 
-              across JS/TS, Python, Go, React, Next.js, 
-              Flutter, DevOps, and whatever the 
+              I build things for the web —
+              across JS/TS, Python, Go, React, Next.js,
+              Flutter, DevOps, and whatever the
               problem calls for.
             </p>
           </motion.div>

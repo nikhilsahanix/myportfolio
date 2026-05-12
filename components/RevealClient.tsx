@@ -1,3 +1,5 @@
+// components/RevealClient.tsx
+
 'use client';
 
 import { useReveal } from './useReveal';
