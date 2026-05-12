@@ -7,7 +7,7 @@ import { useState } from "react";
 
 export default function AdminLogin() {
   const [isLoading, setIsLoading] = useState(false);
-  
+
   const supabase = createBrowserClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
@@ -15,11 +15,11 @@ export default function AdminLogin() {
 
   const handleGitHubLogin = async () => {
     setIsLoading(true);
-    
+
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "github",
       options: {
-        redirectTo: `${window.location.origin}/auth/callback?next=/admin/dashboard`,
+        redirectTo: `https://nikhilsahani.in/auth/callback?next=/admin/dashboard`,
         queryParams: {
           prompt: "consent",
         },

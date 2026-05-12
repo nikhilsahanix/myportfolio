@@ -47,9 +47,7 @@ export default function Navbar() {
             </a>
           ))}
           <a
-            href="/resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/resume"
             className="text-sm font-semibold px-5 py-2 rounded-full border border-accent/40 text-accent hover:bg-accent hover:text-white hover:border-accent transition-all duration-300"
           >
             Resume
@@ -94,12 +92,10 @@ export default function Navbar() {
             </a>
           ))}
           <a
-            href="/resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/resume"
             className="text-base font-semibold text-accent mt-1 min-h-11 inline-flex items-center"
           >
-            Resume ↗
+            Resume →
           </a>
         </nav>
       </div>
