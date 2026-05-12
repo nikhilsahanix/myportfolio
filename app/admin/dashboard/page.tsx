@@ -25,24 +25,18 @@ async function setFlashMessage(type: 'success' | 'error', message: string) {
 }
 
 // Helper function to get and clear flash message
+// ✅ Read-only — safe to call during render
 async function getFlashMessage() {
   const cookieStore = await cookies();
   const flashData = cookieStore.get('flash_message')?.value;
-  
-  if (flashData) {
-    // Clear the cookie immediately after reading
-    cookieStore.set('flash_message', '', {
-      maxAge: 0,
-      path: '/'
-    });
-    
-    try {
-      return JSON.parse(flashData);
-    } catch {
-      return null;
-    }
+
+  if (!flashData) return null;
+
+  try {
+    return JSON.parse(flashData);
+  } catch {
+    return null;
   }
-  return null;
 }
 
 export default async function AdminDashboard() {
@@ -331,9 +325,9 @@ export default async function AdminDashboard() {
             <h2 className="font-display text-3xl font-bold text-pearl">Welcome back, Nikhil.</h2>
             <p className="mt-1 text-pearl/60">Manage your projects, track your vibes, and update your portfolio.</p>
           </div>
-          <a 
-            href="/" 
-            target="_blank" 
+          <a
+            href="/"
+            target="_blank"
             className="inline-flex items-center justify-center rounded-md bg-pearl px-5 py-2.5 text-sm font-medium text-abyss transition-all hover:-translate-y-0.5 hover:bg-azure hover:text-white hover:shadow-lg hover:shadow-azure/20"
           >
             + View Live Site
@@ -353,22 +347,22 @@ export default async function AdminDashboard() {
                 <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                   <div className="space-y-1.5">
                     <label className="text-xs font-bold uppercase tracking-wider text-azure/80">Project Title *</label>
-                    <input 
-                      name="title" 
-                      type="text" 
-                      required 
-                      placeholder="e.g. Master Email Validator" 
-                      className="w-full rounded-md border border-white/10 bg-abyss/50 px-4 py-2.5 text-sm text-pearl placeholder:text-pearl/30 transition-all focus:border-azure focus:outline-none focus:ring-1 focus:ring-azure/50" 
+                    <input
+                      name="title"
+                      type="text"
+                      required
+                      placeholder="e.g. Master Email Validator"
+                      className="w-full rounded-md border border-white/10 bg-abyss/50 px-4 py-2.5 text-sm text-pearl placeholder:text-pearl/30 transition-all focus:border-azure focus:outline-none focus:ring-1 focus:ring-azure/50"
                     />
                   </div>
                   <div className="space-y-1.5">
                     <label className="text-xs font-bold uppercase tracking-wider text-azure/80">URL Slug *</label>
-                    <input 
-                      name="slug" 
-                      type="text" 
-                      required 
-                      placeholder="e.g. master-email-validator" 
-                      className="w-full rounded-md border border-white/10 bg-abyss/50 px-4 py-2.5 text-sm text-pearl placeholder:text-pearl/30 transition-all focus:border-azure focus:outline-none focus:ring-1 focus:ring-azure/50" 
+                    <input
+                      name="slug"
+                      type="text"
+                      required
+                      placeholder="e.g. master-email-validator"
+                      className="w-full rounded-md border border-white/10 bg-abyss/50 px-4 py-2.5 text-sm text-pearl placeholder:text-pearl/30 transition-all focus:border-azure focus:outline-none focus:ring-1 focus:ring-azure/50"
                     />
                   </div>
                 </div>
@@ -376,61 +370,61 @@ export default async function AdminDashboard() {
                 <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                   <div className="space-y-1.5">
                     <label className="text-xs font-bold uppercase tracking-wider text-azure/80">Live Demo URL</label>
-                    <input 
-                      name="live_demo_url" 
-                      type="url" 
-                      placeholder="https://" 
-                      className="w-full rounded-md border border-white/10 bg-abyss/50 px-4 py-2.5 text-sm text-pearl placeholder:text-pearl/30 transition-all focus:border-azure focus:outline-none focus:ring-1 focus:ring-azure/50" 
+                    <input
+                      name="live_demo_url"
+                      type="url"
+                      placeholder="https://"
+                      className="w-full rounded-md border border-white/10 bg-abyss/50 px-4 py-2.5 text-sm text-pearl placeholder:text-pearl/30 transition-all focus:border-azure focus:outline-none focus:ring-1 focus:ring-azure/50"
                     />
                   </div>
                   <div className="space-y-1.5">
                     <label className="text-xs font-bold uppercase tracking-wider text-azure/80">GitHub Repo URL</label>
-                    <input 
-                      name="github_url" 
-                      type="url" 
-                      placeholder="https://github.com/..." 
-                      className="w-full rounded-md border border-white/10 bg-abyss/50 px-4 py-2.5 text-sm text-pearl placeholder:text-pearl/30 transition-all focus:border-azure focus:outline-none focus:ring-1 focus:ring-azure/50" 
+                    <input
+                      name="github_url"
+                      type="url"
+                      placeholder="https://github.com/..."
+                      className="w-full rounded-md border border-white/10 bg-abyss/50 px-4 py-2.5 text-sm text-pearl placeholder:text-pearl/30 transition-all focus:border-azure focus:outline-none focus:ring-1 focus:ring-azure/50"
                     />
                   </div>
                 </div>
 
                 <div className="space-y-1.5">
                   <label className="text-xs font-bold uppercase tracking-wider text-azure/80">Tech Stacks (Comma Separated)</label>
-                  <input 
-                    name="tech_stacks" 
-                    type="text" 
-                    placeholder="Next.js, TypeScript, Playwright, AWS" 
-                    className="w-full rounded-md border border-white/10 bg-abyss/50 px-4 py-2.5 text-sm text-pearl placeholder:text-pearl/30 transition-all focus:border-azure focus:outline-none focus:ring-1 focus:ring-azure/50" 
+                  <input
+                    name="tech_stacks"
+                    type="text"
+                    placeholder="Next.js, TypeScript, Playwright, AWS"
+                    className="w-full rounded-md border border-white/10 bg-abyss/50 px-4 py-2.5 text-sm text-pearl placeholder:text-pearl/30 transition-all focus:border-azure focus:outline-none focus:ring-1 focus:ring-azure/50"
                   />
                 </div>
 
                 <div className="space-y-1.5">
                   <label className="text-xs font-bold uppercase tracking-wider text-azure/80">Brief Details *</label>
-                  <textarea 
-                    name="brief_details" 
-                    required 
-                    rows={3} 
-                    placeholder="A short summary of what this project does..." 
+                  <textarea
+                    name="brief_details"
+                    required
+                    rows={3}
+                    placeholder="A short summary of what this project does..."
                     className="w-full resize-none rounded-md border border-white/10 bg-abyss/50 px-4 py-2.5 text-sm text-pearl placeholder:text-pearl/30 transition-all focus:border-azure focus:outline-none focus:ring-1 focus:ring-azure/50"
                   ></textarea>
                 </div>
 
                 <div className="space-y-1.5">
                   <label className="text-xs font-bold uppercase tracking-wider text-azure/80">Problems Faced (Markdown)</label>
-                  <textarea 
-                    name="problems_faced" 
-                    rows={4} 
-                    placeholder="Describe the roadblocks you hit..." 
+                  <textarea
+                    name="problems_faced"
+                    rows={4}
+                    placeholder="Describe the roadblocks you hit..."
                     className="w-full resize-y rounded-md border border-white/10 bg-abyss/50 px-4 py-2.5 font-mono text-sm text-pearl placeholder:text-pearl/30 transition-all focus:border-azure focus:outline-none focus:ring-1 focus:ring-azure/50"
                   ></textarea>
                 </div>
 
                 <div className="space-y-1.5">
                   <label className="text-xs font-bold uppercase tracking-wider text-azure/80">Vibe Coding Fixes (Markdown)</label>
-                  <textarea 
-                    name="vibe_coding_fixes" 
-                    rows={4} 
-                    placeholder="How did you use AI and intuition to solve it?..." 
+                  <textarea
+                    name="vibe_coding_fixes"
+                    rows={4}
+                    placeholder="How did you use AI and intuition to solve it?..."
                     className="w-full resize-y rounded-md border border-white/10 bg-abyss/50 px-4 py-2.5 font-mono text-sm text-pearl placeholder:text-pearl/30 transition-all focus:border-azure focus:outline-none focus:ring-1 focus:ring-azure/50"
                   ></textarea>
                 </div>
